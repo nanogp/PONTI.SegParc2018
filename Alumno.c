@@ -102,18 +102,18 @@ eAlumno* eAlumno_new(void)
    newAlumno = (eAlumno*)malloc(sizeof(eAlumno));
    if(newAlumno != NULL)
    {
-      newAlumno->print            = eAlumno_printOne;
+      newAlumno->print           = eAlumno_printOne;
 
        //getters
-      newAlumno->getNombre          = eAlumno_getNombre;
-      newAlumno->getEdad           = eAlumno_getEdad;
-      newAlumno->getLegajo            = eAlumno_getLegajo;
+      newAlumno->getNombre       = eAlumno_getNombre;
+      newAlumno->getEdad         = eAlumno_getEdad;
+      newAlumno->getLegajo       = eAlumno_getLegajo;
       newAlumno->getSexo         = eAlumno_getSexo;
 
        //setters
-      newAlumno->setNombre          = eAlumno_setNombre;
-      newAlumno->setEdad           = eAlumno_setEdad;
-      newAlumno->setLegajo            = eAlumno_setLegajo;
+      newAlumno->setNombre       = eAlumno_setNombre;
+      newAlumno->setEdad         = eAlumno_setEdad;
+      newAlumno->setLegajo       = eAlumno_setLegajo;
       newAlumno->setSexo         = eAlumno_setSexo;
    }
 
@@ -355,7 +355,6 @@ int eAlumno_gestionCrearArchivo(ArrayList* this)
          }
 
          cantCamposLeidos = fscanf(pFile, ALUMNO_MASCARA_ARCHIVO, nombre, edad, legajo, sexo);
-         printf("\n%s sexo",sexo);
          while(!feof(pFile))
          {
             if(feof(pFile))
@@ -372,7 +371,7 @@ int eAlumno_gestionCrearArchivo(ArrayList* this)
                   huboErrorAddRegistro += pAlumno->setNombre(pAlumno, nombre);
                   huboErrorAddRegistro += pAlumno->setEdad(pAlumno, atoi(edad));
                   huboErrorAddRegistro += pAlumno->setLegajo(pAlumno, atoi(legajo));
-                  huboErrorAddRegistro += pAlumno->setSexo(pAlumno, sprintf(sexo, "%c", sexo));
+                  huboErrorAddRegistro += pAlumno->setSexo(pAlumno, sexo);
                }
                else
                {
