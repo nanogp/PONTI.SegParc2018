@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1530299110 source:d:\github\ponti.segparc2018\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1530295489 d:\github\ponti.segparc2018\arraylist.h
+	"General.h"
+
+1530029323 d:\github\ponti.segparc2018\general.h
+
+1530288662 source:d:\github\ponti.segparc2018\general.c
+	"General.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1530301807 source:d:\github\ponti.segparc2018\main.c
+	"General.h"
+	"Menu.h"
+	"ArrayList.h"
+	"Alumno.h"
+	<stdio.h>
+	<stdlib.h>
+
+1529952509 d:\github\ponti.segparc2018\menu.h
+
+1530304097 d:\github\ponti.segparc2018\alumno.h
+	"ArrayList.h"
+	"General.h"
+	"Menu.h"
+
+1530206962 source:d:\github\ponti.segparc2018\menu.c
+	"Menu.h"
+	"General.h"
+	<stdio.h>
+
+1530304529 source:d:\github\ponti.segparc2018\alumno.c
+	"ArrayList.h"
+	"Alumno.h"
+	"Menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
