@@ -636,10 +636,10 @@ int al_print(ArrayList* this, int pageSize, int (*pFunc)(void*, char*), char* he
 
 ArrayList* al_filter(ArrayList* listIn, int (*functionFilter)(void*))
 {
-   ArrayList* returnAux = NULL;
+   ArrayList* returnAux = al_newArrayList();
    void* pElement;
 
-   if(listIn != NULL && (*functionFilter) != NULL)
+   if(listIn != NULL && (*functionFilter) != NULL && returnAux != NULL)
    {
       for(int i = 0 ; i<listIn->len(listIn) ; i++)
       {

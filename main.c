@@ -13,19 +13,20 @@ int main()
 {
    int returnAux = CHECK_POINTER;
    eMenu menuPrincipal = {/*titulo del menu*/{"PARCIAL 2, MODELO 2"},
-                          /*cantidad de opciones*/4,
-                          /*codigos*/{1,2,3,
+                          /*cantidad de opciones*/5,
+                          /*codigos*/{1,2,3,4,
                                       0},
                           /*descripciones*/"\n  1. CREAR ARCHIVO ALUMNOS.CSV"
                                            "\n  2. LISTAR ORDENADO POR EDAD"
                                            "\n  3. CREAR Y LISTAR ARRAY FILTRADO"
+                                           "\n  4. CREAR ARCHIVO FILTRADO"
                                            "\n  0. SALIR DEL PROGRAMA"};
     int opcion;
     char salirDelPrograma = 'N';
 
     //ARRAYS DE ESTRUCTURAS
     ArrayList* alumnos = al_newArrayList();
-    ArrayList* filtrado = al_newArrayList();
+    ArrayList* filtrado = NULL;
 
     if(alumnos == NULL)
     {
@@ -49,7 +50,7 @@ int main()
                 eAlumno_gestionArrayFiltrado(alumnos, filtrado);
                 break;
             case 4:
-
+                eAlumno_gestionCrearArchivoFiltrado(filtrado);
                 break;
             case 5:
                 break;

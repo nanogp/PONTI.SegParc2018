@@ -30,7 +30,7 @@
 
 /**************************** MASCARAS ***********************************************************/
 #define ALUMNO_PRINT_MASK "\n%s \t %d \t %d \t %c"
-#define ALUMNO_PARSE_MASK "%[^,],%[^,],%[^,],%[^\n]\n"
+#define ALUMNO_PARSE_MASK "%[^,],%[^,],%[^,],%c[^\n]\n"
 #define ALUMNO_LISTADO_RECUENTO "\n%d registros."
 
 /**************************** TITULOS ************************************************************/
@@ -171,4 +171,5 @@ int eAlumno_sortByEdad(ArrayList* this);
 //int eAlumno_sortByNombre(ArrayList* this);
 int funcionQueFiltra(void* item);
 int eAlumno_gestionArrayFiltrado(ArrayList* alumnos, ArrayList* filtrado);
+int eAlumno_gestionCrearArchivoFiltrado(ArrayList* this);
 #endif // ALUMNO_H_INCLUDED

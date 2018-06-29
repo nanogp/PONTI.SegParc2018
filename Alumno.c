@@ -295,7 +295,7 @@ int eAlumno_gestionCrearArchivo(ArrayList* this)
    char nombre[50];
    char edad[50];
    char legajo[50];
-   char sexo[50];
+   char sexo[1];
    int cantCamposLeidos;
    int huboErrorAddRegistro;
    int leidosOk = 0;
@@ -303,16 +303,16 @@ int eAlumno_gestionCrearArchivo(ArrayList* this)
    FILE* pFile;
    char* ruta = "alumnos.csv";
 
-   registros[0] = eAlumno_newParam("Ana"  ,20,111,'F');
-   registros[1] = eAlumno_newParam("Beto" ,21,112,'M');
-   registros[2] = eAlumno_newParam("Jose" ,30,133,'M');
-   registros[3] = eAlumno_newParam("Pipo" ,25,124,'M');
-   registros[4] = eAlumno_newParam("Mary" ,40,155,'F');
-   registros[5] = eAlumno_newParam("Leo"  ,64,136,'M');
-   registros[6] = eAlumno_newParam("Marco",34,137,'M');
-   registros[7] = eAlumno_newParam("Pola" ,65,158,'F');
-   registros[8] = eAlumno_newParam("Flaco",27,119,'M');
-   registros[9] = eAlumno_newParam("Flaca",64,220,'F');
+   registros[0] = eAlumno_newParam("Ana"  ,20,0,'F');
+   registros[1] = eAlumno_newParam("Beto" ,21,0,'M');
+   registros[2] = eAlumno_newParam("Jose" ,30,0,'M');
+   registros[3] = eAlumno_newParam("Pipo" ,25,0,'M');
+   registros[4] = eAlumno_newParam("Mary" ,40,0,'F');
+   registros[5] = eAlumno_newParam("Leo"  ,64,0,'M');
+   registros[6] = eAlumno_newParam("Marco",34,0,'M');
+   registros[7] = eAlumno_newParam("Pola" ,65,0,'F');
+   registros[8] = eAlumno_newParam("Flaco",27,0,'M');
+   registros[9] = eAlumno_newParam("Flaca",64,0,'F');
 
    limpiarPantallaYMostrarTitulo("CREAR ARCHIVO");
 
@@ -395,6 +395,7 @@ int eAlumno_gestionCrearArchivo(ArrayList* this)
 
             cantCamposLeidos = fscanf(pFile, ALUMNO_MASCARA_ARCHIVO, nombre, edad, legajo, sexo);
          }
+         fclose(pFile);//cierro el lectura
 
          this->print(this,
                      ALUMNO_PAGESIZE,
@@ -524,15 +525,9 @@ int eAlumno_gestionArrayFiltrado(ArrayList* alumnos, ArrayList* filtrado)
 
    limpiarPantallaYMostrarTitulo("CREAR ARRAY FILTRADO");
 
-   if(alumnos != NULL && filtrado != NULL)
+   if(alumnos != NULL)
    {
       returnAux = 0;
-
-      if(!filtrado->isEmpty(filtrado))
-      {
-         //limpio lista si no esta vacia
-         filtrado->clear(filtrado);
-      }
 
       filtrado = al_filter(alumnos, funcionQueFiltra);
    }
@@ -547,6 +542,41 @@ int eAlumno_gestionArrayFiltrado(ArrayList* alumnos, ArrayList* filtrado)
    return returnAux;
 }
 
+int eAlumno_gestionCrearArchivoFiltrado(ArrayList* this)
+{
+   int returnAux = CHECK_POINTER;
+   eAlumno* pAlumno;
+   FILE* pFile;
+   char* ruta = "out.csv";
 
+   limpiarPantallaYMostrarTitulo("CREACION DE ARCHIVO FILTRADO");
+
+   if(this != NULL && ruta != NULL)
+   {
+      returnAux = OK;
+
+      pFile = fopen(ruta, "w"); //abro para crear archivo
+
+      if(pFile == NULL)
+      {
+         printf("\nNo pudo abrirse el archivo %s para escritura", ruta);
+      }
+      else
+      {
+         //genero archivo
+         for(int i=0 ; i<this->len(this) ; i++)
+         {
+            pAlumno = (eAlumno*)this->get(this,i);
+            fprintf(pFile, "%s,%d,%d,%c\n", pAlumno->getNombre(pAlumno),
+                                            pAlumno->getEdad(pAlumno),
+                                            pAlumno->getLegajo(pAlumno),
+                                            pAlumno->getSexo(pAlumno));
+         }
+      }
+      fclose(pFile);//cierro el modo escritura
+   }
+   pausa();
+   return returnAux;
+}
 
 
