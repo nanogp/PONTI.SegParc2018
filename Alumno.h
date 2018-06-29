@@ -169,5 +169,6 @@ int eAlumno_gestionBaja(ArrayList* this);
 int eAlumno_compareByEdad(void* pAlumnoA, void* pAlumnoB);
 int eAlumno_sortByEdad(ArrayList* this);
 //int eAlumno_sortByNombre(ArrayList* this);
-
+int funcionQueFiltra(void* item);
+int eAlumno_gestionArrayFiltrado(ArrayList* alumnos, ArrayList* filtrado);
 #endif // ALUMNO_H_INCLUDED

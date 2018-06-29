@@ -633,3 +633,27 @@ int al_print(ArrayList* this, int pageSize, int (*pFunc)(void*, char*), char* he
    }
    return returnAux;
 }
+
+ArrayList* al_filter(ArrayList* listIn, int (*functionFilter)(void*))
+{
+   ArrayList* returnAux = NULL;
+   void* pElement;
+
+   if(listIn != NULL && (*functionFilter) != NULL)
+   {
+      for(int i = 0 ; i<listIn->len(listIn) ; i++)
+      {
+         pElement = listIn->get(listIn, i);
+
+         if((*functionFilter)(pElement))
+         {
+            returnAux->add(returnAux, pElement);
+         }
+      }
+   }
+
+   return returnAux;
+}
+
+
+

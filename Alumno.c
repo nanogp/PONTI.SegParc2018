@@ -499,3 +499,54 @@ int eAlumno_sortByNombre(ArrayList* this)
    return returnAux;
 }
 //-----------------------------------------------------------------------------------------------//
+
+int funcionQueFiltra(void* item)
+{
+   int returnAux = 0;
+   eAlumno* pAlumno;
+
+   if(item != NULL)
+   {
+      pAlumno = (eAlumno*)item;
+
+      if(pAlumno->getEdad(pAlumno) > 30)
+      {
+         returnAux = 1;
+      }
+   }
+
+   return returnAux;
+}
+
+int eAlumno_gestionArrayFiltrado(ArrayList* alumnos, ArrayList* filtrado)
+{
+   int returnAux = -1;
+
+   limpiarPantallaYMostrarTitulo("CREAR ARRAY FILTRADO");
+
+   if(alumnos != NULL && filtrado != NULL)
+   {
+      returnAux = 0;
+
+      if(!filtrado->isEmpty(filtrado))
+      {
+         //limpio lista si no esta vacia
+         filtrado->clear(filtrado);
+      }
+
+      filtrado = al_filter(alumnos, funcionQueFiltra);
+   }
+
+   filtrado->print(filtrado,
+                     ALUMNO_PAGESIZE,
+                     eAlumno_printOne,
+                     ALUMNO_PRINT_MASK_CABECERA,
+                     ALUMNO_PRINT_MASK);
+   imprimirEnPantalla("\n Se creo el arraylist filtrado.");
+   pausa();
+   return returnAux;
+}
+
+
+
+
